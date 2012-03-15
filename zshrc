@@ -16,9 +16,10 @@ ZSH_THEME="gnzh"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git vi-mode)
-source $ZSH/oh-my-zsh.sh
+plugins=(git)
 
+source $ZSH/oh-my-zsh.sh
+bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
 
 if [ $(uname) = Darwin ]; then
