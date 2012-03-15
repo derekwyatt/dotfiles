@@ -1,0 +1,16 @@
+#!/bin/bash
+
+alias gls='git status --porcelain'
+alias gc='git commit'
+alias ga='git add'
+alias gpu='git push'
+alias gpl='git pull'
+alias gco='git checkout'
+alias gd='git diff'
+alias gb='git branch'
+alias gbl='git branch --list'
+alias gm='git merge'
+alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ---- $d; (cd $d; git status --porcelain); done'
+alias addM='git status --porcelain | grep "^.M " | cut -c4- | xargs git add'
+alias addQ='git status --porcelain | grep "^?? " | cut -c4- | xargs git add'
+alias addD='git status --porcelain | grep "^.D " | cut -c4- | xargs git rm'
