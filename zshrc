@@ -178,39 +178,6 @@ function ff
   return 0
 }
 
-function gitnotify
-{
-  if [[ ! -d .git ]]; then
-    eecho "You're not in a git repository dumbass"
-    return 1
-  fi
-  local proj="$(basename $(pwd))"
-  local commit=$(git log -1 | head -1 | awk '{print $2}')
-  local url="$(printf 'http://gitweb.rim.net/?p=users/dwyatt/%s.git;a=commit;h=%s' $proj $commit)"
-  for user in $*
-  do
-    local email=
-    case $user in
-      ron) email=ropuri@rim.com
-        ;;
-      derek) email=dwyatt@rim.com
-        ;;
-    esac
-    if [[ -n $email ]]; then
-      ssmtp $email <<EOH
-      To: $email
-      From: dwyatt@rim.com
-      Subject: Commit on $proj
-      Content-Type: text/html; charset="us-ascii"
-      <html>
-      <a href='$url'>$commit</a>
-      </html>
-EOH
-      eecho "sent notification to $user ($email)"
-    fi
-  done
-}
-
 # Assorted
 alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
