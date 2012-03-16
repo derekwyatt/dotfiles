@@ -375,3 +375,5 @@ function csd
 } 
 
 alias cd=cd_
+
+test -f ~/.zshrc_local && . ~/.zshrc_local
