@@ -16,7 +16,7 @@ ZSH_THEME="gnzh"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git autodirstack)
+plugins=(git regex-dirstack)
 
 source $ZSH/oh-my-zsh.sh
 
