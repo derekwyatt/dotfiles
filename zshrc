@@ -21,6 +21,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
+unsetopt nomatch
 
 if [ $(uname) = Darwin ]; then
   export PATH=.:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
