@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="gnzh"
+ZSH_THEME=""
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -16,9 +16,10 @@ ZSH_THEME="gnzh"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+export ZSH_CUSTOM=~/.dotfiles/zsh_custom
 plugins=(git regex-dirstack)
-
 source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
@@ -177,6 +178,7 @@ alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
 alias v="vim --remote-silent"
+alias pd="cd -"
 
 alias sc=screen
 alias scl="screen -list"
