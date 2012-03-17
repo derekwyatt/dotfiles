@@ -25,8 +25,11 @@ bindkey -M viins 'jj' vi-cmd-mode
 unsetopt nomatch
 
 if [ $(uname) = Darwin ]; then
+  alias gg="mvim --remote-silent"
   export PATH=.:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
+  alias gg="gvim --remote-silent"
+  alias open=gnome-open
   export PATH=.:buildutil:/home/dwyatt/local/bin:/home/dwyatt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/qnx650/host/linux/x86/usr/bin:/etc/qnx/bin
 fi
 
@@ -43,15 +46,6 @@ if which dircolors > /dev/null; then
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
-
-function gg
-{
-  if uname | grep -q Darwin; then
-    mvim --remote-silent $@
-  else
-    gvim --remote-silent $@
-  fi
-}
 
 function eecho
 {
@@ -184,7 +178,6 @@ alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
 
-alias open=gnome-open
 alias sc=screen
 alias scl="screen -list"
 
