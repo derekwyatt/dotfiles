@@ -23,12 +23,11 @@ source $ZSH/oh-my-zsh.sh
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
 unsetopt nomatch
+unsetopt correct_all
 
 if [ $(uname) = Darwin ]; then
-  alias gg="mvim --remote-silent"
   export PATH=.:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
-  alias gg="gvim --remote-silent"
   alias open=gnome-open
   export PATH=.:buildutil:/home/dwyatt/local/bin:/home/dwyatt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/qnx650/host/linux/x86/usr/bin:/etc/qnx/bin
 fi
@@ -177,6 +176,7 @@ function ff
 alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
+alias v="vim --remote-silent"
 
 alias sc=screen
 alias scl="screen -list"
