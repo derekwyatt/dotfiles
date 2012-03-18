@@ -179,7 +179,7 @@ alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
 alias v="vim --remote-silent"
 alias pd="cd -"
-alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; (cd $x; gss); done'
+alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
 
 alias sc=screen
 alias scl="screen -list"
