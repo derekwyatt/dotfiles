@@ -53,8 +53,7 @@ EOH
   if [[ -n $files ]]; then
     files=':args! '"$files<cr>"
   fi
-  cmd="$before$cmd$after$files"
-  echo gvim --remote-send "$cmd"
+  cmd="$before$files$after"
   gvim --remote-send "$cmd"
 }
 
