@@ -23,7 +23,7 @@ else
 fi
 
 export ZSH_CUSTOM=~/.dotfiles/zsh_custom
-plugins=(git regex-dirstack)
+plugins=(git regex-dirstack vim-interaction)
 source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 
@@ -183,7 +183,6 @@ function ff
 alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
-alias v="vim --remote-silent"
 alias pd="cd -"
 alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
 
