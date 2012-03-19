@@ -16,6 +16,12 @@ ZSH_THEME=""
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+if [[ -z ${MY_SHELL_LEVEL:-0} ]]; then
+  export MY_SHELL_LEVEL=0
+else
+  export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
+fi
+
 export ZSH_CUSTOM=~/.dotfiles/zsh_custom
 plugins=(git regex-dirstack)
 source $ZSH/oh-my-zsh.sh
