@@ -24,7 +24,7 @@ usage: callvim [-b cmd] [-a cmd] [file ... fileN]
   file       The file to edit
   ... fileN  The other files to add to the argslist
 EOH
-    exit 0
+    return 0
   fi
 
   local cmd=""
