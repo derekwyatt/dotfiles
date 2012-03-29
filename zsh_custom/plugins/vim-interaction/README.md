@@ -44,7 +44,7 @@ the file:
     or
     > v -b':sp' -aG /tmp/myfile.scala
 
-This will load the file and then copy the first line to the end (Why would you
+This will load the file and then copy the first line to the end (Why you would
 ever want to do this... I dunno):
 
     > v -a':1t$' /tmp/myfile.scala
@@ -52,3 +52,18 @@ ever want to do this... I dunno):
 And this will load all of the `*.txt` files into the args list:
 
     > v *.txt
+
+If you want to load files into areas that are already split, use one of the
+aliases for that:
+
+    # Do a ':wincmd h' first
+    > vh /tmp/myfile.scala
+
+    # Do a ':wincmd j' first
+    > vj /tmp/myfile.scala
+
+    # Do a ':wincmd k' first
+    > vk /tmp/myfile.scala
+
+    # Do a ':wincmd l' first
+    > vl /tmp/myfile.scala

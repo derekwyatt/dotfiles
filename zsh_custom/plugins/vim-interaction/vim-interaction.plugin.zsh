@@ -8,8 +8,10 @@ function resolveFile
 {
   if [ -f "$1" ]; then
     echo $(readlink -f "$1")
+  elif [[ "${1#/}" == "$1" ]]; then
+    echo "$(pwd)/$1"
   else
-    echo "$1"
+    echo $1
   fi
 }
 
@@ -61,3 +63,7 @@ EOH
 alias v=callvim
 alias vvsp="callvim -b':vsp'"
 alias vhsp="callvim -b':sp'"
+alias vk="callvim -b':wincmd k'"
+alias vj="callvim -b':wincmd j'"
+alias vl="callvim -b':wincmd l'"
+alias vh="callvim -b':wincmd h'"
