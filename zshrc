@@ -179,6 +179,16 @@ function ff
   return 0
 }
 
+function gitall
+{
+  find . -type d -a -name .git | while read d
+  do
+    local x=${d%.git}
+    echo ========= $x
+    (cd $x; git "$@")
+  done
+}
+
 # Assorted
 alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
