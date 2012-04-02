@@ -29,6 +29,10 @@ source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
+setopt auto_pushd
+setopt pushd_silent
+setopt pushd_ignore_dups
+setopt ignore_eof
 unsetopt nomatch
 unsetopt correct_all
 
@@ -195,6 +199,8 @@ alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
 alias pd="cd -"
 alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
+alias gd='git diff'
+alias gdc='git diff --cached'
 
 alias sc=screen
 alias scl="screen -list"
