@@ -201,6 +201,7 @@ alias pd="cd -"
 alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias o=octave
 
 alias sc=screen
 alias scl="screen -list"
