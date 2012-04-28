@@ -33,6 +33,7 @@ setopt auto_pushd
 setopt pushd_silent
 setopt pushd_ignore_dups
 setopt ignore_eof
+setopt rm_star_silent
 unsetopt nomatch
 unsetopt correct_all
 
