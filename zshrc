@@ -22,6 +22,7 @@ else
   export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
 fi
 
+export SS_DISPLAY_LIMIT=25
 export ZSH_CUSTOM=~/.dotfiles/zsh_custom
 plugins=(git regex-dirstack vim-interaction)
 source $ZSH/oh-my-zsh.sh

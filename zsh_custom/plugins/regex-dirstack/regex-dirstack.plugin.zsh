@@ -14,7 +14,7 @@ function ss
 {
   local c=1
   local collimit=$((${COLUMNS-80}-10))
-  dirs -p | tail -n+2 | \
+  dirs -p | tail -n+2 | head -${SS_DISPLAY_LIMIT-1000} | \
   while read f
   do
     echo "$c) "$(limitStringToWidthByMidpoint $f $collimit)
