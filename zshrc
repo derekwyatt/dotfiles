@@ -16,7 +16,7 @@ ZSH_THEME=""
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-if [[ -z ${MY_SHELL_LEVEL:-0} ]]; then
+if [[ -z ${MY_SHELL_LEVEL} ]]; then
   export MY_SHELL_LEVEL=0
 else
   export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
