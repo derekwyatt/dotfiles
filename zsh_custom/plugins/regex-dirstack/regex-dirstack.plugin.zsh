@@ -14,7 +14,7 @@ function ss
 {
   local c=1
   local collimit=$((${COLUMNS-80}-10))
-  dirs -p | tail -n+2 | \
+  dirs -p | tail -n+2 | head -${SS_DISPLAY_LIMIT-1000} | \
   while read f
   do
     echo "$c) "$(limitStringToWidthByMidpoint $f $collimit)
@@ -40,3 +40,15 @@ function csd
   cd +$num
   return $?
 } 
+
+function cdb
+{
+  local dir="$1"
+  local old="$PWD"
+  local new="$(echo $old | sed -e s%/$dir/.*$%/$dir%)"
+  if [[ "$old" != "$new" ]]; then
+    cd "$new"
+  else
+    echo "That evaluated to squat." 1>&2
+  fi
+}
