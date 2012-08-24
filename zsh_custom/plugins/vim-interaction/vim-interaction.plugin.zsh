@@ -30,14 +30,15 @@ EOH
   fi
 
   local cmd=""
-  local before="<esc>"
+  local toNormal="<c-\\><c-n>"
+  local before=""
   local after=""
   while getopts ":b:a:" option
   do
     case $option in
       a) after="$OPTARG"
          ;;
-      b) before="$OPTARG"
+      b) before="$before$OPTARG"
          ;;
     esac
   done
@@ -56,7 +57,7 @@ EOH
   if [[ -n $files ]]; then
     files=':args! '"$files<cr>"
   fi
-  cmd="$before$files$after"
+  cmd="$toNormal$before$files$after"
   gvim --remote-send "$cmd"
   if typeset -f postCallVim > /dev/null; then
     postCallVim
