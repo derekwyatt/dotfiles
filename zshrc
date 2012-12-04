@@ -42,7 +42,7 @@ if [ $(uname) = Darwin ]; then
   export PATH=.:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
   alias open=gnome-open
-  export PATH=.:buildutil:/home/dwyatt/local/bin:/home/dwyatt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/qnx650/host/linux/x86/usr/bin:/etc/qnx/bin
+  export PATH=.:buildutil:~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
 export GPGKEY=B2F6D883
@@ -66,7 +66,7 @@ function eecho
 function findWithSpec
 {
   local dirs=
-  local egrepopts="-v '\\.sw[po]\\$|/\\.git/|^\\.git/'"
+  local egrepopts="-v '\\.sw[po]\\$|/\\.git/|^\\.git/|/\\.svn/|^\\.svn/'"
   local nullprint=
   while [[ $# != 0 ]];
   do
@@ -141,6 +141,24 @@ function findm
 }
 alias findmz="findm -Z"
 
+function findpom
+{
+  findWithSpec "$@" "-name pom.xml"
+}
+alias findpomz="findpom -Z"
+
+function findx
+{
+  findWithSpec "$@" "-name \*.xml"
+}
+alias findxz="findx -Z"
+
+function findd
+{
+  findWithSpec "$@" "-type d"
+}
+alias finddz="findd -Z"
+
 alias f=findWithSpec
 
 function findClass
@@ -198,11 +216,14 @@ function gitall
 alias swps='find . -name .\*.sw[op]'
 alias rmstd='xargs rm -vf'
 alias xag='xargs -0 egrep'
+alias xg='xargs egrep'
+alias xgi='xargs egrep -i'
 alias pd="cd -"
 alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias o=octave
+alias mvn=~/bin/mvn-colour
 
 alias sc=screen
 alias scl="screen -list"
