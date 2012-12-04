@@ -48,8 +48,7 @@ fi
 export GPGKEY=B2F6D883
 export GPG_TTY=$(tty)
 
-export EDITOR=/usr/local/bin/vim
-export JAVA_HOME=/usr/local/jdk
+export EDITOR=vim
 
 if which dircolors > /dev/null; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
