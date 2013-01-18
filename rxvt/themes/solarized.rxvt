@@ -1,0 +1,34 @@
+rxvt.background: #002b36
+rxvt.foreground: #657b83
+ 
+!! black dark/light
+rxvt.color0: #073642
+rxvt.color8: #002b36
+ 
+!! red dark/light
+rxvt.color1: #dc322f
+rxvt.color9: #cb4b16
+ 
+!! green dark/light
+rxvt.color2: #859900
+rxvt.color10: #586e75
+ 
+!! yellow dark/light
+rxvt.color3: #b58900
+rxvt.color11: #657b83
+ 
+!! blue dark/light
+rxvt.color4: #268bd2
+rxvt.color12: #839496
+ 
+!! magenta dark/light
+rxvt.color5: #d33682
+rxvt.color13: #6c71c4
+ 
+!! cyan dark/light
+rxvt.color6: #2aa198
+rxvt.color14: #93a1a1
+ 
+!! white dark/light
+rxvt.color7: #eee8d5
+rxvt.color15: #fdf6e3

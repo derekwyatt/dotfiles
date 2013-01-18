@@ -67,7 +67,7 @@ TERM xterm-debian
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
 DIR 00;36 # directory
-LINK 01;30;40 # symbolic link. (If you set this to 'target' instead of a
+LINK ;30 # symbolic link. (If you set this to 'target' instead of a
  # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
 FIFO 40;33 # pipe
@@ -202,9 +202,9 @@ EXEC 00;32
 .C 00;37;44
 .cc 00;37;44
 .cpp 00;37;44
-.scala 00;33;44
-.java 00;37;44
-.h 00;33;41
-.H 00;33;41
-.hh 00;33;41
-.hpp 00;33;41
+.scala 00;33
+.java 00;31
+.h 00;33
+.H 00;33
+.hh 00;33
+.hpp 00;33

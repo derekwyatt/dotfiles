@@ -1,0 +1,27 @@
+! Jellybeans Terminal Colours
+rxvt.background: #151515
+rxvt.foreground: #ffffff
+! black
+rxvt.color0: #888888
+rxvt.color8: #525252
+! red
+rxvt.color1: #cf6a4c
+rxvt.color9: #ff9d80
+! green
+rxvt.color2: #99ad6a
+rxvt.color10: #c3e6ad
+! yellow
+rxvt.color3: #fad07a
+rxvt.color11: #ffefbf
+! blue
+rxvt.color4: #8197bf
+rxvt.color12: #accaff
+! magenta
+rxvt.color5: #8787af
+rxvt.color13: #c4c4ff
+! cyan
+rxvt.color6: #8fbfdc
+rxvt.color14: #80bfaf
+! white
+rxvt.color7: #888888
+rxvt.color15: #e8e8d3

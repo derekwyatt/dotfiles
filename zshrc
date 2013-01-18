@@ -129,6 +129,12 @@ function findch
 }
 alias findchz="findch -Z"
 
+function findpy
+{
+  findWithSpec "$@" '-name \*.py'
+}
+alias findcpy="findpy -Z"
+
 function findf
 {
   findWithSpec "$@" "-type f"
@@ -158,6 +164,23 @@ function findd
   findWithSpec "$@" "-type d"
 }
 alias finddz="findd -Z"
+
+function findExtension
+{
+  local ext=
+  local dir=.
+  if [[ $# == 0 ]]; then
+    echo "usage: findExtension [dir] <extension>"
+    return 1
+  else
+    ext=$@[$#]
+    if [[ $# != 1 ]]; then
+      dir=$1
+    fi
+  fi
+  findWithSpec $dir '-name \*'.$ext
+}
+alias fe=findExtension
 
 alias f=findWithSpec
 
