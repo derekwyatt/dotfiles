@@ -16,7 +16,7 @@ ZSH_THEME=""
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-if [[ -z ${MY_SHELL_LEVEL:-0} ]]; then
+if [[ -z ${MY_SHELL_LEVEL} ]]; then
   export MY_SHELL_LEVEL=0
 else
   export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
@@ -39,7 +39,7 @@ unsetopt nomatch
 unsetopt correct_all
 
 if [ $(uname) = Darwin ]; then
-  export PATH=.:~/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  export PATH=.:~/bin:/usr/local/bin:/usr/loal/Cellar/smlnj/110.75/libexec/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
   alias open=gnome-open
   export PATH=.:buildutil:~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -47,6 +47,8 @@ fi
 
 export GPGKEY=B2F6D883
 export GPG_TTY=$(tty)
+
+export SBT_OPTS=-XX:PermSize=256M
 
 export EDITOR=vim
 
