@@ -39,10 +39,10 @@ unsetopt nomatch
 unsetopt correct_all
 
 if [ $(uname) = Darwin ]; then
-  export PATH=.:~/bin:/usr/local/bin:/usr/loal/Cellar/smlnj/110.75/libexec/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  export PATH=.:~/bin:~/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
   alias open=gnome-open
-  export PATH=.:buildutil:~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 fi
 
 export GPGKEY=B2F6D883
