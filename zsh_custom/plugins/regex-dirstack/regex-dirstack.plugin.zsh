@@ -37,7 +37,7 @@ function csd
     echo "usage: csd <number greater than 0 | regex>" 1>&2
     return 1
   fi
-  cd +$num
+  cd -$num
   return $?
 } 
 

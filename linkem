@@ -1,8 +1,9 @@
 #!/bin/bash
 
-rm -f ~/.bashrc ~/.inputrc ~/.bashprompt ~/.dircolors ~/.zshrc
-ln -s .dotfiles/bashrc ~/.bashrc
-ln -s .dotfiles/inputrc ~/.inputrc
+rm -f ~/.bashrc ~/.bashprompt ~/.ctags ~/.dircolors ~/.inputrc ~/.zshrc
 ln -s .dotfiles/bashprompt ~/.bashprompt
+ln -s .dotfiles/bashrc ~/.bashrc
+ln -s .dotfiles/ctags ~/.ctags
 ln -s .dotfiles/dircolors ~/.dircolors
+ln -s .dotfiles/inputrc ~/.inputrc
 ln -s .dotfiles/zshrc ~/.zshrc
