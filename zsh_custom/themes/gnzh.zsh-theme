@@ -55,9 +55,9 @@ local len_so_far=$((${#prompty_stuff_so_far}+20))
 local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $((COLUMNS-$len_so_far)))%{$PR_NO_COLOR%}'
 
 #PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}$PR_PROMPT "
-PROMPT="╭─${user_host} ${current_dir} ${git_branch}
+PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_RED%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"

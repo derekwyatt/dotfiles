@@ -1,0 +1,97 @@
+!black.normal        : xoria256.LineNr.guibg
+!black.bright        : black.normal.rgb - 8
+#define _color0        #444444
+#define _color8        #0a0a0a
+
+!red.normal          : red.bright.r - 8
+!red.bright          : xoria256.Special.guifg
+#define _color1        #d78787
+#define _color9        #df8787
+
+!green.normal        : green.bright.g - 8
+!green.bright        : xoria256.PreProc.guifg
+#define _color2        #afd787
+#define _color10       #afdf87
+
+!yellow.normal       : yellow.bright.rg - 8
+!yellow.bright       : xoria256.Special.guifg
+#define _color3        #f7f7af
+#define _color11       #ffffaf
+
+!blue.normal         : blue.bright.b - 8
+!blue.bright         : xoria256.Statement.guifg
+#define _color4        #87afd7
+#define _color12       #87afdf
+
+!magenta.normal      : magenta.bright.rb - 8
+!magenta.bright      : xoria256.Identifier.guifg
+#define _color5        #d7afd7
+#define _color13       #dfafdf
+
+!cyan.normal         : cyan.bright.gb - 8
+!cyan.bright         : green.bright + blue.bright
+#define _color6        #87afd7
+#define _color14       #87afd7
+
+!white.normal        : white.bright.rgb - 8
+!white.bright        : xoria256.Folded.guifg
+#define _color7        #e6e6e6
+#define _color15       #eeeeee
+
+!bold                : xoria256.Type.guifg
+!underline           : xoria256.htmlValue.guifg
+#define _colorBD       #afafdf
+#define _colorUL       #dfdfaf
+
+!foreground          : xoria256.Normal.guifg
+!background          : xoria256.Normal.guibg
+!cursorColor         : xoria256.Cursor.guibg
+#define _foreground    #d0d0d0
+#define _background    #1c1c1c
+#define _cursorColor   #ffaf00
+
+urxvt.color0         : #444444
+urxvt.color1         : #d78787
+urxvt.color2         : #afd787
+urxvt.color3         : #f7f7af
+urxvt.color4         : #87afd7
+urxvt.color5         : #d7afd7
+urxvt.color6         : #87afd7
+urxvt.color7         : #e6e6e6
+urxvt.color8         : #0a0a0a
+urxvt.color9         : #df8787
+urxvt.color10        : #afdf87
+urxvt.color11        : #ffffaf
+urxvt.color12        : #87afdf
+urxvt.color13        : #dfafdf
+urxvt.color14        : #87afd7
+urxvt.color15        : #eeeeee
+urxvt.colorBD        : #afafdf
+urxvt.colorIT        : _colorIT
+urxvt.colorUL        : #dfdfaf
+urxvt.foreground     : #d0d0d0
+urxvt.background     : #1c1c1c
+urxvt.cursorColor    : #ffaf00
+
+XTerm*color0         : #444444
+XTerm*color1         : #d78787
+XTerm*color2         : #afd787
+XTerm*color3         : #f7f7af
+XTerm*color4         : #87afd7
+XTerm*color5         : #d7afd7
+XTerm*color6         : #87afd7
+XTerm*color7         : #e6e6e6
+XTerm*color8         : #0a0a0a
+XTerm*color9         : #df8787
+XTerm*color10        : #afdf87
+XTerm*color11        : #ffffaf
+XTerm*color12        : #87afdf
+XTerm*color13        : #dfafdf
+XTerm*color14        : #87afd7
+XTerm*color15        : #eeeeee
+XTerm*colorBD        : #afafdf
+XTerm*colorIT        : _colorIT
+XTerm*colorUL        : #dfdfaf
+XTerm*foreground     : #d0d0d0
+XTerm*background     : #1c1c1c
+XTerm*cursorColor    : #ffaf00

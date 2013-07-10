@@ -253,4 +253,6 @@ alias mvn=~/bin/mvn-colour
 alias sc=screen
 alias scl="screen -list"
 
+alias pgrep="pgrep -fl"
+
 test -f ~/.zshrc_local && . ~/.zshrc_local
