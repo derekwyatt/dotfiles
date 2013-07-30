@@ -9,7 +9,10 @@ setopt prompt_subst
 function limitStringToWidthByMidpoint
 {
   local string="$1"
-  local width=$2
+  local columns=$2
+  shift; shift
+  local extrainfo="$*"
+  local width=$((columns-${#extrainfo}-12))
   if (( ${#string} > $width )); then
     local splitnum=$((width/2))
     echo "$(echo $string | cut -c1-$splitnum) ... $(echo $string | cut -c$((${#string}-$splitnum))-)"
@@ -51,10 +54,8 @@ local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 local git_branch='$(git_prompt_info)%{$PR_NO_COLOR%}'
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local prompty_stuff_so_far="$(git_prompt_info)$(print -P %n)$(print -P %m)"
-local len_so_far=$((${#prompty_stuff_so_far}+20))
-local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $((COLUMNS-$len_so_far)))%{$PR_NO_COLOR%}'
+local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P %n@%m)" $(git rev-parse --abbrev-ref HEAD 2>/dev/null))%{$PR_NO_COLOR%}'
 
-#PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}$PR_PROMPT "
 PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
