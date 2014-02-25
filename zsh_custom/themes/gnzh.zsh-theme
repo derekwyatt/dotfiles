@@ -21,6 +21,20 @@ function limitStringToWidthByMidpoint
   fi
 }
 
+function limitGitBranch
+{
+  local br=$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed -e 's!\([^/]\)[^/]*/!\1/!g' | sed -e 's!\(/[^_]*\)_.*!\1!')
+  local dirty=""
+  if git status > /dev/null 2>&1; then
+    if [[ -n $(git status -s) ]]; then
+      dirty="*"
+    fi
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$br$dirty$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  else
+    echo ""
+  fi
+}
+
 # make some aliases for the colours: (coud use normal escap.seq's too)
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
   eval PR_$color='%{$fg[${(L)color}]%}'
@@ -51,10 +65,9 @@ fi
 
 local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
-local git_branch='$(git_prompt_info)%{$PR_NO_COLOR%}'
+local git_branch='$(limitGitBranch)%{$PR_NO_COLOR%}'
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
-local prompty_stuff_so_far="$(git_prompt_info)$(print -P %n)$(print -P %m)"
-local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P %n@%m)" $(git rev-parse --abbrev-ref HEAD 2>/dev/null))%{$PR_NO_COLOR%}'
+local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P %n@%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
 
 PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "

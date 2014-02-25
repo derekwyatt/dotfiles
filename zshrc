@@ -255,4 +255,9 @@ alias scl="screen -list"
 
 alias pgrep="pgrep -fl"
 
+alias bc="bc -lq"
+
 test -f ~/.zshrc_local && . ~/.zshrc_local
+
+# Auvik Settings
+export JAVA_OPTS="-XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=1024m -Xmx1024m -Xss2m -XX:+UseCodeCacheFlushing"
