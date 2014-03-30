@@ -11,8 +11,8 @@ function limitStringToWidthByMidpoint
   local string="$1"
   local columns=$2
   shift; shift
-  local extrainfo="$*"
-  local width=$((columns-${#extrainfo}-12))
+  local extrainfo="$(echo $* | tr -d '%{}')"
+  local width=$((columns-${#extrainfo}-2))
   if (( ${#string} > $width )); then
     local splitnum=$((width/2))
     echo "$(echo $string | cut -c1-$splitnum) ... $(echo $string | cut -c$((${#string}-$splitnum))-)"
@@ -67,7 +67,7 @@ local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
 local git_branch='$(limitGitBranch)%{$PR_NO_COLOR%}'
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
-local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P %n@%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
+local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P @%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
 
 PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "
