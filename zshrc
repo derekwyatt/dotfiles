@@ -182,9 +182,10 @@ function findExtension
   fi
   findWithSpec $dir '-name \*'.$ext
 }
-alias fe=findExtension
 
+alias fe=findExtension
 alias f=findWithSpec
+alias fn='find . -name'
 
 function findClass
 {
@@ -245,10 +246,15 @@ alias xg='xargs egrep'
 alias xgi='xargs egrep -i'
 alias pd="cd -"
 alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
-alias gd='git diff'
-alias gdc='git diff --cached'
 alias o=octave
 alias mvn=~/bin/mvn-colour
+
+alias gl='git pull --ff-only'
+alias gf='git fetch'
+alias gd='git diff'
+alias gdc='git diff --cached'
+
+alias gld="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 alias sc=screen
 alias scl="screen -list"
@@ -261,3 +267,4 @@ test -f ~/.zshrc_local && . ~/.zshrc_local
 
 # Auvik Settings
 export JAVA_OPTS="-XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=1024m -Xmx1024m -Xss2m -XX:+UseCodeCacheFlushing"
+

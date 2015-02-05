@@ -27,9 +27,10 @@ function limitGitBranch
   local dirty=""
   if git status > /dev/null 2>&1; then
     if [[ -n $(git status -s) ]]; then
-      dirty="*"
+      echo "$PR_RED$ZSH_THEME_GIT_PROMPT_PREFIX$br$ZSH_THEME_GIT_PROMPT_SUFFIX$PR_NO_COLOR"
+    else
+      echo "$PR_GREEN$ZSH_THEME_GIT_PROMPT_PREFIX$br$ZSH_THEME_GIT_PROMPT_SUFFIX$PR_NO_COLOR"
     fi
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$br$dirty$ZSH_THEME_GIT_PROMPT_SUFFIX"
   else
     echo ""
   fi
@@ -60,7 +61,7 @@ fi
 if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
   eval PR_HOST='${PR_YELLOW}%m${PR_NO_COLOR}' #SSH
 else
-  eval PR_HOST='${PR_GREEN}%m${PR_NO_COLOR}' # no SSH
+  eval PR_HOST='${PR_MAGENTA}%m${PR_NO_COLOR}' # no SSH
 fi
 
 local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
@@ -73,5 +74,5 @@ PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_RED%}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$PR_NO_COLOR%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="› "
