@@ -6,16 +6,22 @@ autoload -U colors zsh/terminfo # Used in the colour alias below
 colors
 setopt prompt_subst
 
-function limitStringToWidthByMidpoint
+function limitPath
 {
   local string="$1"
   local columns=$2
   shift; shift
   local extrainfo="$(echo $* | tr -d '%{}')"
-  local width=$((columns-${#extrainfo}-2))
+  local width=$((columns-${#extrainfo}-40))
   if (( ${#string} > $width )); then
-    local splitnum=$((width/2))
-    echo "$(echo $string | cut -c1-$splitnum) ... $(echo $string | cut -c$((${#string}-$splitnum))-)"
+    local new="$(echo $string | sed 's%/\([^/]\)[^/][^/]*/%/\1/%')"
+    if (( ${#new} == ${#string} )); then
+      echo $string
+    else
+      limitPath "$new" $columns
+    fi
+    # local splitnum=$((width/2))
+    # echo "$(echo $string | cut -c1-$splitnum) ... $(echo $string | cut -c$((${#string}-$splitnum))-)"
   else
     echo $string
   fi
@@ -23,13 +29,26 @@ function limitStringToWidthByMidpoint
 
 function limitGitBranch
 {
-  local br=$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed -e 's!\([^/]\)[^/]*/!\1/!g' | sed -e 's!\(/[^_]*\)_.*!\1!')
+  local br=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  local colour="$PR_GREEN"
+  if [[ $br == "HEAD" ]]; then
+    colour="$PR_YELLOW"
+    br=$(git for-each-ref --sort=taggerdate --format '%(refname) %(taggerdate)' refs/tags | sed 's%.*/%%' | grep '^v' | head -1 | tr -d ' ')
+    if [[ -z $br ]]; then
+      br=$(git for-each-ref --sort=taggerdate --format '%(refname) %(taggerdate)' refs/tags | head -1 | tr -d ' ')
+    fi
+    if [[ -z $br ]]; then
+      colour="$PR_GREEN"
+      br=HEAD
+    fi
+  fi
+  br=$(echo $br | sed -e 's!\([^/_]\)[^/_]*[/_]!\1/!g' -e 's!\(/[^_]*\)_.*!\1!')
   local dirty=""
   if git status > /dev/null 2>&1; then
     if [[ -n $(git status -s) ]]; then
       echo "$PR_RED$ZSH_THEME_GIT_PROMPT_PREFIX$br$ZSH_THEME_GIT_PROMPT_SUFFIX$PR_NO_COLOR"
     else
-      echo "$PR_GREEN$ZSH_THEME_GIT_PROMPT_PREFIX$br$ZSH_THEME_GIT_PROMPT_SUFFIX$PR_NO_COLOR"
+      echo "$colour$ZSH_THEME_GIT_PROMPT_PREFIX$br$ZSH_THEME_GIT_PROMPT_SUFFIX$PR_NO_COLOR"
     fi
   else
     echo ""
@@ -68,7 +87,7 @@ local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
 local git_branch='$(limitGitBranch)%{$PR_NO_COLOR%}'
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
-local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitStringToWidthByMidpoint "$(print -P %~)" $COLUMNS "$(print -P @%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
+local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitPath "$(print -P %~)" $COLUMNS "$(print -P @%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
 
 PROMPT="╭─${user_host} ${git_branch}${current_dir}
 ╰─$PR_PROMPT "

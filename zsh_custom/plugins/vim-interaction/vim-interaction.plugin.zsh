@@ -52,7 +52,7 @@ EOH
   local files=""
   for f in $@
   do
-    files="$files $(resolveFile $f)"
+    files="$files $(resolveFile $f | sed 's/ /\\ /g')"
   done
   if [[ -n $files ]]; then
     files=':args! '"$files<cr>"

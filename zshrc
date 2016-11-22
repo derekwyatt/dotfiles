@@ -48,13 +48,11 @@ fi
 export GPGKEY=B2F6D883
 export GPG_TTY=$(tty)
 
-export SBT_OPTS=-XX:PermSize=256M
-
 export EDITOR=vim
 
 if which dircolors > /dev/null; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto -F'
+  alias ls='ls --color=auto -F --quoting-style=escape'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
@@ -161,6 +159,12 @@ function findx
 }
 alias findxz="findx -Z"
 
+function findjs
+{
+  findWithSpec "$@" "-name \*.js"
+}
+alias findjsz="findjs -Z"
+
 function findd
 {
   findWithSpec "$@" "-type d"
@@ -189,6 +193,16 @@ alias fn='find . -name'
 
 function findClass
 {
+  local echoOnly=0
+  while getopts e opt
+  do
+    case $opt in
+      e) echoOnly=1
+        ;;
+    esac
+  done
+  shift $((OPTIND-1))
+
   local pattern="${1-}"
   if [ -z "$pattern" ]; then
     eecho "No pattern supplied" 1>&2
@@ -197,13 +211,21 @@ function findClass
   echo $CLASSPATH | tr ':' '\n' | grep -v '^ *$' | \
     while read entry
     do
-      echo "====== $entry ======"
+      local out="====== $entry ======"
       if [ "${entry%.jar}" != "$entry" ]; then
         if [ -f "$entry" ]; then
-          jar tf "$entry" | egrep $pattern
+          if [ $echoOnly = 1 ]; then
+            echo "echoif \"jar tf '$entry' | egrep $pattern\" \"$out\""
+          else
+            echoif "jar tf '$entry' | egrep $pattern" "$out"
+          fi
         fi
       elif [ -d "$entry" ]; then
-        find "$entry" | egrep -i $pattern
+        if [ $echoOnly = 1 ]; then
+          echo "echoif \"find '$entry' | egrep -i $pattern\"" "\"$out\""
+        else
+          echoif "find '$entry' | egrep -i $pattern" "\"$out\""
+        fi
       fi
     done
 }
@@ -245,26 +267,22 @@ alias xag='xargs -0 egrep'
 alias xg='xargs egrep'
 alias xgi='xargs egrep -i'
 alias pd="cd -"
-alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
-alias o=octave
-alias mvn=~/bin/mvn-colour
+alias sc=screen
+alias scl="screen -list"
+alias pgrep="pgrep -fl"
+alias bc="bc -lq"
 
+# Git related
+alias grss='for f in $(find . -type d -a -name .git); do x=${f%/.git}; echo ==== $x; (cd $x; gss); done'
 alias gl='git pull --ff-only'
 alias gf='git fetch'
 alias gd='git diff'
 alias gdc='git diff --cached'
-
+alias gcf='gc --all --fixup HEAD'
+alias grebase='(export GIT_SEQUENCE_EDITOR=echo; git rebase --interactive --autosquash develop)'
+alias gcfr='gcf && grebase'
 alias gld="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-
-alias sc=screen
-alias scl="screen -list"
-
-alias pgrep="pgrep -fl"
-
-alias bc="bc -lq"
 
 test -f ~/.zshrc_local && . ~/.zshrc_local
 
-# Auvik Settings
-export JAVA_OPTS="-XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=1024m -Xmx1024m -Xss2m -XX:+UseCodeCacheFlushing"
-
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
