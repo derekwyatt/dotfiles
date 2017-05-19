@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<root>
+  <devicevendordef>
+    <vendorname>Microsoft</vendorname>
+    <vendorid>0x045e</vendorid>
+  </devicevendordef>
+
+  <deviceproductdef>
+    <productname>Sculpt</productname>
+    <productid>0x07a5</productid>
+  </deviceproductdef>
+
+  <deviceproductdef>
+    <productname>SculptMouse</productname>
+    <productid>0x07a5</productid>
+  </deviceproductdef>
+
+  <appdef>
+    <appname>Firefox</appname>
+    <equal>org.mozilla.firefox</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Chrome</appname>
+    <equal>com.google.Chrome</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Safari</appname>
+    <equal>com.apple.Safari</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Vim</appname>
+    <equal>org.vim.MacVim</equal>
+  </appdef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Chrome</name>
+    <url type="file">/Applications/Google Chrome.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Firefox</name>
+    <url type="file">/Applications/Firefox.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_MacVim</name>
+    <url type="file">/Applications/MacVim.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
+    <url type="file">/Applications/iTerm.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_HipChat</name>
+    <url type="file">/Applications/HipChat.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Microsoft_Outlook</name>
+    <url type="file">/Applications/Microsoft Outlook.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Safari</name>
+    <url type="file">/Applications/Safari.app</url>
+  </vkopenurldef>
+
+  <item>
+    <name>Switcher</name>
+    <item>
+      <name>Application Switcher</name>
+      <identifier vk_config="true">notsave.derek.switcher_mode</identifier>
+      <autogen>__ShowStatusMessage__ Switcher Mode</autogen>
+      <block>
+        <autogen>__KeyToKey__ KeyCode::V, KeyCode::VK_OPEN_URL_APP_MacVim, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::T, KeyCode::VK_OPEN_URL_APP_iTerm, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::F, KeyCode::VK_OPEN_URL_APP_Firefox, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::H, KeyCode::VK_OPEN_URL_APP_HipChat, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::M, KeyCode::VK_OPEN_URL_APP_Microsoft_Outlook, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::C, KeyCode::VK_OPEN_URL_APP_Chrome, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::S, KeyCode::VK_OPEN_URL_APP_Safari, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+      </block>
+    </item>
+    <item>
+      <name>Control+Space to turn on Switcher Mode</name>
+      <identifier>derek.switcher_mode_turnon</identifier>
+      <config_not>notsave.derek.switcher_mode</config_not>
+      <autogen>__KeyToKey__ KeyCode::SPACE, VK_CONTROL, KeyCode::VK_CONFIG_FORCE_ON_notsave_derek_switcher_mode</autogen>
+    </item>
+    <item>
+      <name>Control+Space to turn off Switcher Mode</name>
+      <identifier>derek.switcher_mode_turnoff</identifier>
+      <autogen>__KeyToKey__ KeyCode::SPACE, VK_CONTROL, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+    </item>
+  </item>
+  <item>
+    <name>PrtScn (FN 13) to Shift+Ctrl+Eject</name>
+    <identifier>sculpt.prtscr_shift_ctrl_eject</identifier>
+    <device_only>DeviceVendor::Microsoft, DeviceProduct::Sculpt</device_only>
+    <autogen>
+      __KeyToKey__ KeyCode::F13, ModifierFlag::NONE, ConsumerKeyCode::EJECT, ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+    </autogen>
+  </item>
+  <item>
+    <name>Remap Sculpt Windows to Option</name>
+    <appendix>This maps the Microsoft Sculpt's Windows Key to Option.</appendix>
+    <identifier>sculpt.windows_to_option</identifier>
+    <device_only>DeviceVendor::Microsoft, DeviceProduct::Sculpt</device_only>
+    <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::OPTION_R</autogen>
+  </item>
+  <item>
+    <name>Remap Sculpt Alt to Command</name>
+    <appendix>This maps the Microsoft Sculpt's ALT Key to Command.</appendix>
+    <identifier>sculpt.alt_to_command</identifier>
+    <device_only>DeviceVendor::Microsoft, DeviceProduct::Sculpt</device_only>
+    <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::COMMAND_R</autogen>
+  </item>
+  <item>
+    <name>Map some of the cmd keys to ctrl keys in Safari, Firefox and Chrome</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.browser_key_remaps</identifier>
+    <only>Safari, Firefox, Chrome</only>
+    <autogen>__KeyToKey__ KeyCode::W, VK_CONTROL, KeyCode::W, VK_COMMAND</autogen>
+    <autogen>__KeyToKey__ KeyCode::T, VK_CONTROL, KeyCode::T, VK_COMMAND</autogen>
+    <autogen>__KeyToKey__ KeyCode::R, VK_CONTROL, KeyCode::R, VK_COMMAND</autogen>
+    <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::F, VK_COMMAND</autogen>
+    <autogen>__KeyToKey__ KeyCode::L, VK_CONTROL, KeyCode::L, VK_COMMAND</autogen>
+    <autogen>__KeyToKey__ KeyCode::K, VK_CONTROL, KeyCode::CURSOR_UP, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::J, VK_CONTROL, KeyCode::CURSOR_DOWN, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::BRACKET_RIGHT, VK_CONTROL, KeyCode::TAB, VK_CONTROL</autogen>
+    <autogen>__KeyToKey__ KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::TAB, VK_CONTROL | VK_SHIFT</autogen>
+    <autogen>__KeyToKey__ KeyCode::D, VK_CONTROL, KeyCode::PAGEDOWN, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::U, VK_CONTROL, KeyCode::PAGEUP, ModifierFlag::NONE</autogen>
+  </item>
+  <item>
+    <name>Tilt right to back (cmd+[) and left to forward (cmd+]) in Safari, Firefox and Chrome</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.browser_tilts</identifier>
+    <device_only>DeviceVendor::Microsoft,DeviceProduct::SculptMouse</device_only>
+    <only>Safari, Firefox, Chrome</only>
+    <autogen>__ScrollWheelToKey__ ScrollWheel::RIGHT, ModifierFlag::NONE, KeyCode::BRACKET_LEFT, ModifierFlag::COMMAND_L</autogen>
+    <autogen>__ScrollWheelToKey__ ScrollWheel::LEFT, ModifierFlag::NONE, KeyCode::BRACKET_RIGHT, ModifierFlag::COMMAND_L</autogen>
+  </item>
+  <item>
+    <name>Windows Button to LaunchPad (Microsoft Sculpt Comfort Mouse)</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.win_button_launchpad</identifier>
+    <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::LAUNCHPAD</autogen>
+  </item>
+  <item>
+    <name>Windows Button to Expose (Microsoft Sculpt Comfort Mouse)</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.win_button_expose</identifier>
+    <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::EXPOSE_ALL</autogen>
+  </item>
+</root>
