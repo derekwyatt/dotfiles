@@ -39,7 +39,8 @@ unsetopt nomatch
 unsetopt correct_all
 
 if [ $(uname) = Darwin ]; then
-  export PATH=.:~/bin:~/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  export PATH=.:~/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/Cellar/coreutils/8.30/libexec/gnubin:~/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  
 else
   alias open=gnome-open
   export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -286,3 +287,4 @@ alias gld="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 test -f ~/.zshrc_local && . ~/.zshrc_local
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+alias ls='ls --color=auto --quoting-style=literal'

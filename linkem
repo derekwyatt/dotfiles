@@ -1,11 +1,12 @@
 #!/bin/bash
 
-rm -f ~/.bashrc ~/.bashprompt ~/.ctags ~/.dircolors ~/.inputrc ~/.zshrc ~/.git_template
-ln -s .dotfiles/bashprompt ~/.bashprompt
-ln -s .dotfiles/bashrc ~/.bashrc
-ln -s .dotfiles/ctags ~/.ctags
-ln -s .dotfiles/dircolors ~/.dircolors
-ln -s .dotfiles/inputrc ~/.inputrc
-ln -s .dotfiles/zshrc ~/.zshrc
-ln -s .dotfiles/.git_template ~/.git_template
-git config --global init.templatedir ~/.git_template
+mkdir -p ~/.hammerspoon
+rm -f ~/.bashrc ~/.bashprompt ~/.ctags ~/.dircolors ~/.inputrc ~/.zshrc ~/.git_template ~/.hammerspoon/init.lua
+ln -s ~/.dotfiles/bashprompt ~/.bashprompt
+ln -s ~/.dotfiles/bashrc ~/.bashrc
+ln -s ~/.dotfiles/ctags ~/.ctags
+ln -s ~/.dotfiles/dircolors ~/.dircolors
+ln -s ~/.dotfiles/inputrc ~/.inputrc
+ln -s ~/.dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/.git_template ~/.git_template
+ln -s ~/.dotfiles/hammerspoon-init.lua ~/.hammerspoon/init.lua

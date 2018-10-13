@@ -58,7 +58,7 @@ EOH
     files=':args! '"$files<cr>"
   fi
   cmd="$toNormal$before$files$after"
-  gvim --remote-send "$cmd"
+  vr --remote-send "$cmd"
   if typeset -f postCallVim > /dev/null; then
     postCallVim
   fi
