@@ -21,25 +21,53 @@ end)
 -- Window Layouts
 -------------------------------------------------------------------
 
-layouts = {
-  { name = 'Firefox', x = 0.0, y = 0.0, w = 0.7, h = 1 },
-  { name = 'VimR',    x = 0.0, y = 0.0, w = 0.7, h = 1 },
-  { name = 'iTerm2',  x = 0.7, y = 0.0, w = 0.3, h = 1 }
+units = {
+  right30    = { x = 0.7, y = 0.0, w = 0.3, h = 1.0 },
+  left70     = { x = 0.0, y = 0.0, w = 0.7, h = 1.0 },
+  top50      = { x = 0.0, y = 0.0, w = 1.0, h = 0.5 },
+  bot50      = { x = 0.0, y = 0.5, w = 1.0, h = 0.5 },
+  upright30  = { x = 0.7, y = 0.0, w = 0.3, h = 0.5 },
+  botright30 = { x = 0.7, y = 0.5, w = 0.3, h = 0.5 },
+  upleft70   = { x = 0.0, y = 0.0, w = 0.7, h = 0.5 },
+  botleft70  = { x = 0.0, y = 0.5, w = 0.7, h = 0.5 },
+  right7080  = { x = 0.7, y = 0.0, w = 0.3, h = 0.8 }
 }
 
-mash = { 'shift', 'ctrl', 'cmd' }
-hs.hotkey.bind(mash, 'l', function() hs.window.focusedWindow():move({ x = 0.7, y = 0.0, w = 0.3, h = 1}, nil, true) end)
-hs.hotkey.bind(mash, 'h', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 0.7, h = 1}, nil, true) end)
-hs.hotkey.bind(mash, 'k', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 0.5}, nil, true) end)
-hs.hotkey.bind(mash, 'j', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.5, w = 1, h = 0.5}, nil, true) end)
-hs.hotkey.bind(mash, 'm', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 1}, nil, true) end)
-hs.hotkey.bind(mash, '0', function()
-  for i = 1,3 do
-    local t = layouts[i]
-    local win = hs.application.get(t["name"]):mainWindow()
-    win:move({ x = t["x"], y = t["y"], w = t["w"], h = t["h"] }, nil, true)
+layouts = {
+  coding = {
+    { name = 'Firefox', unit = units.left70 },
+    { name = 'VimR',    unit = units.left70 },
+    { name = 'iTerm2',  unit = units.right30 }
+  },
+  writing = {
+    { name = 'Firefox', unit = units.left70 },
+    { name = 'VimR',    unit = units.left70 },
+    { name = 'iTerm2',  unit = units.right30 },
+    { name = 'Skim',    unit = units.right7080 }
+  }
+}
+
+function runLayout(layout)
+  for i = 1,#layout do
+    local t = layout[i]
+    local win = hs.application.get(t.name):mainWindow()
+    win:move(t.unit, nil, true)
   end
-end)
+end
+
+mash = { 'shift', 'ctrl', 'cmd' }
+hs.hotkey.bind(mash, 'l', function() hs.window.focusedWindow():move(units.right30,    nil, true) end)
+hs.hotkey.bind(mash, 'h', function() hs.window.focusedWindow():move(units.left70,     nil, true) end)
+hs.hotkey.bind(mash, 'k', function() hs.window.focusedWindow():move(units.top50,      nil, true) end)
+hs.hotkey.bind(mash, 'j', function() hs.window.focusedWindow():move(units.bot50,      nil, true) end)
+hs.hotkey.bind(mash, ']', function() hs.window.focusedWindow():move(units.upright30,  nil, true) end)
+hs.hotkey.bind(mash, '[', function() hs.window.focusedWindow():move(units.upleft70,   nil, true) end)
+hs.hotkey.bind(mash, ';', function() hs.window.focusedWindow():move(units.botleft70,  nil, true) end)
+hs.hotkey.bind(mash, "'", function() hs.window.focusedWindow():move(units.botright30, nil, true) end)
+
+hs.hotkey.bind(mash, 'm', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 1}, nil, true) end)
+hs.hotkey.bind(mash, '0', function() runLayout(layouts.coding) end)
+hs.hotkey.bind(mash, '9', function() runLayout(layouts.writing) end)
 
 -------------------------------------------------------------------
 -- Launcher
