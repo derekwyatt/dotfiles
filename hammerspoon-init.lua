@@ -1,11 +1,49 @@
-hs.alert.defaultStyle.strokeColor = hs.drawing.color.x11.orangered
-hs.alert.defaultStyle.fillColor = hs.drawing.color.x11.cyan
-hs.alert.defaultStyle.textColor = hs.drawing.color.x11.black
-hs.alert.defaultStyle.strokeWidth = 20
-hs.alert.defaultStyle.radius = 30
-hs.alert.defaultStyle.textSize = 128
-hs.alert.defaultStyle.fadeInDuration = 0.05
-hs.alert.defaultStyle.fadeOutDuration = 0.05
+-------------------------------------------------------------------
+-- Globals
+-------------------------------------------------------------------
+hs.window.animationDuration = 0
+
+-------------------------------------------------------------------
+-- Vim Mode
+-------------------------------------------------------------------
+
+vim = hs.loadSpoon('VimMode')
+
+-- Basic key binding to ctrl+;
+-- You can choose any key binding you want here, see:
+--   https://www.hammerspoon.org/docs/hs.hotkey.html#bind
+
+hs.hotkey.bind({'ctrl'}, ';', function()
+  vim:enter()
+end)
+
+-------------------------------------------------------------------
+-- Window Layouts
+-------------------------------------------------------------------
+
+layouts = {
+  { name = 'Firefox', x = 0.0, y = 0.0, w = 0.7, h = 1 },
+  { name = 'VimR',    x = 0.0, y = 0.0, w = 0.7, h = 1 },
+  { name = 'iTerm2',  x = 0.7, y = 0.0, w = 0.3, h = 1 }
+}
+
+mash = { 'shift', 'ctrl', 'cmd' }
+hs.hotkey.bind(mash, 'l', function() hs.window.focusedWindow():move({ x = 0.7, y = 0.0, w = 0.3, h = 1}, nil, true) end)
+hs.hotkey.bind(mash, 'h', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 0.7, h = 1}, nil, true) end)
+hs.hotkey.bind(mash, 'k', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 0.5}, nil, true) end)
+hs.hotkey.bind(mash, 'j', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.5, w = 1, h = 0.5}, nil, true) end)
+hs.hotkey.bind(mash, 'm', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 1}, nil, true) end)
+hs.hotkey.bind(mash, '0', function()
+  for i = 1,3 do
+    local t = layouts[i]
+    local win = hs.application.get(t["name"]):mainWindow()
+    win:move({ x = t["x"], y = t["y"], w = t["w"], h = t["h"] }, nil, true)
+  end
+end)
+
+-------------------------------------------------------------------
+-- Launcher
+-------------------------------------------------------------------
 
 local launchMode = hs.hotkey.modal.new({}, nil, '')
 
@@ -21,7 +59,16 @@ end
 
 hs.hotkey.bind({ 'ctrl' }, 'space', function()
   launchMode:enter()
-  hs.alert.show('App Launcher Mode', 'infinite')
+  hs.alert.show('App Launcher Mode', {
+    strokeColor = hs.drawing.color.x11.orangered,
+    fillColor = hs.drawing.color.x11.cyan,
+    textColor = hs.drawing.color.x11.black,
+    strokeWidth = 20,
+    radius = 30,
+    textSize = 128,
+    fadeInDuration = 0.05,
+    fadeOutDuration = 0.05
+  }, 'infinite')
 end)
 launchMode:bind({ 'ctrl' }, 'space', function()
   hs.alert.closeAll()
