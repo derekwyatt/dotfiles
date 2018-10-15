@@ -28,7 +28,8 @@ units = {
   botright30    = { x = 0.7, y = 0.5, w = 0.3, h = 0.5 },
   upleft70      = { x = 0.0, y = 0.0, w = 0.7, h = 0.5 },
   botleft70     = { x = 0.0, y = 0.5, w = 0.7, h = 0.5 },
-  right70top80  = { x = 0.7, y = 0.0, w = 0.3, h = 0.8 }
+  right70top80  = { x = 0.7, y = 0.0, w = 0.3, h = 0.8 },
+  maximum       = { x = 0.0, y = 0.0, w = 1.0, h = 1.0 }
 }
 
 layouts = {
@@ -67,8 +68,8 @@ hs.hotkey.bind(mash, ']', function() hs.window.focusedWindow():move(units.uprigh
 hs.hotkey.bind(mash, '[', function() hs.window.focusedWindow():move(units.upleft70,   nil, true) end)
 hs.hotkey.bind(mash, ';', function() hs.window.focusedWindow():move(units.botleft70,  nil, true) end)
 hs.hotkey.bind(mash, "'", function() hs.window.focusedWindow():move(units.botright30, nil, true) end)
+hs.hotkey.bind(mash, 'm', function() hs.window.focusedWindow():move(units.maximum, nil, true) end)
 
-hs.hotkey.bind(mash, 'm', function() hs.window.focusedWindow():move({ x = 0.0, y = 0.0, w = 1, h = 1}, nil, true) end)
 hs.hotkey.bind(mash, '0', function() runLayout(layouts.coding) end)
 hs.hotkey.bind(mash, '9', function() runLayout(layouts.alternatecoding) end)
 hs.hotkey.bind(mash, '8', function() runLayout(layouts.writing) end)
