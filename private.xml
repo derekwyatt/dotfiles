@@ -30,9 +30,54 @@
     <equal>com.apple.Safari</equal>
   </appdef>
 
-  <appdef>
+  <!--<appdef>
     <appname>Vim</appname>
     <equal>org.vim.MacVim</equal>
+  </appdef>-->
+
+  <appdef>
+    <appname>Vim</appname>
+    <equal>com.qvacua.VimR</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Marked2</appname>
+    <equal>com.brettterpstra.marked2</equal>
+  </appdef>
+
+  <appdef>
+    <appname>WhatsApp</appname>
+    <equal>WhatsApp</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Word</appname>
+    <equal>com.microsoft.Word</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Outlook</appname>
+    <equal>com.microsoft.Outlook</equal>
+  </appdef>
+
+  <appdef>
+    <appname>OneNote</appname>
+    <equal>com.microsoft.onenote.mac</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Octave</appname>
+    <equal>org.pqrs.unknownapp.ocateve-gui</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Preview</appname>
+    <equal>com.apple.Preview</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Skim</appname>
+    <equal>net.sourceforge.skim-app.skim</equal>
   </appdef>
 
   <vkopenurldef>
@@ -51,13 +96,28 @@
   </vkopenurldef>
 
   <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_VimR</name>
+    <url type="file">/Applications/VimR.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Terminal</name>
+	<url type="file">/Applications/Utilities/Terminal.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
     <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
     <url type="file">/Applications/iTerm.app</url>
   </vkopenurldef>
 
   <vkopenurldef>
-    <name>KeyCode::VK_OPEN_URL_APP_HipChat</name>
-    <url type="file">/Applications/HipChat.app</url>
+    <name>KeyCode::VK_OPEN_URL_APP_WhatsApp</name>
+    <url type="file">/Applications/WhatsApp.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Microsoft_Word</name>
+    <url type="file">/Applications/Microsoft Word.app</url>
   </vkopenurldef>
 
   <vkopenurldef>
@@ -70,6 +130,48 @@
     <url type="file">/Applications/Safari.app</url>
   </vkopenurldef>
 
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Slack</name>
+    <url type="file">/Applications/Slack.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Octave</name>
+    <url type="file">/Applications/Octave.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Mail</name>
+    <url type="file">/Applications/Mail.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Preview</name>
+    <url type="file">/Applications/Preview.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Skim</name>
+    <url type="file">/Applications/Skim.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_VLC</name>
+    <url type="file">/Applications/VLC.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_AndroidStudio</name>
+    <url type="file">/Applications/Android Studio.app</url>
+  </vkopenurldef>
+
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_SHELL_activate_virtualbox_vm</name>
+    <url type="shell">
+      <![CDATA[     /Users/dwyatt/bin/activate_vbox   ]]>
+    </url>
+  </vkopenurldef>
+
   <item>
     <name>Switcher</name>
     <item>
@@ -77,13 +179,20 @@
       <identifier vk_config="true">notsave.derek.switcher_mode</identifier>
       <autogen>__ShowStatusMessage__ Switcher Mode</autogen>
       <block>
-        <autogen>__KeyToKey__ KeyCode::V, KeyCode::VK_OPEN_URL_APP_MacVim, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::T, KeyCode::VK_OPEN_URL_APP_iTerm, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::F, KeyCode::VK_OPEN_URL_APP_Firefox, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::H, KeyCode::VK_OPEN_URL_APP_HipChat, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::M, KeyCode::VK_OPEN_URL_APP_Microsoft_Outlook, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::C, KeyCode::VK_OPEN_URL_APP_Chrome, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
-        <autogen>__KeyToKey__ KeyCode::S, KeyCode::VK_OPEN_URL_APP_Safari, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::W, KeyCode::VK_OPEN_URL_APP_WhatsApp,                 KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+    <!--<autogen>__KeyToKey__ KeyCode::V, KeyCode::VK_OPEN_URL_APP_MacVim,                   KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>-->
+        <autogen>__KeyToKey__ KeyCode::V, KeyCode::VK_OPEN_URL_APP_VimR,                     KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::T, KeyCode::VK_OPEN_URL_APP_iTerm,                    KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::F, KeyCode::VK_OPEN_URL_APP_Firefox,                  KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::M, KeyCode::VK_OPEN_URL_APP_Mail,                     KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::C, KeyCode::VK_OPEN_URL_APP_Chrome,                   KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::R, KeyCode::VK_OPEN_URL_APP_Safari,                   KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::S, KeyCode::VK_OPEN_URL_APP_Slack,                    KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::O, KeyCode::VK_OPEN_URL_APP_Microsoft_Outlook,        KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::P, KeyCode::VK_OPEN_URL_APP_Preview,                  KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::K, KeyCode::VK_OPEN_URL_APP_Skim,                     KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::B, KeyCode::VK_OPEN_URL_SHELL_activate_virtualbox_vm, KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
+        <autogen>__KeyToKey__ KeyCode::L, KeyCode::VK_OPEN_URL_APP_VLC,                      KeyCode::VK_LOCK_ALL_FORCE_OFF, KeyCode::VK_CONFIG_FORCE_OFF_notsave_derek_switcher_mode</autogen>
       </block>
     </item>
     <item>
@@ -123,13 +232,35 @@
     <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::COMMAND_R</autogen>
   </item>
   <item>
+    <name>Basic Emacs mode movements in Microsoft Word and Microsoft Outlook</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.msapps_remaps</identifier>
+    <only>Word, Outlook, OneNote</only>
+    <autogen>__KeyToKey__ KeyCode::H, VK_CONTROL, KeyCode::DELETE, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::CURSOR_RIGHT, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::B, VK_CONTROL, KeyCode::CURSOR_LEFT, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::F, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::P, VK_CONTROL, KeyCode::CURSOR_UP, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::N, VK_CONTROL, KeyCode::CURSOR_DOWN, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::A, VK_CONTROL, KeyCode::HOME, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::E, VK_CONTROL, KeyCode::END, ModifierFlag::NONE</autogen>
+  </item>
+  <item>
+    <name>Map Control J, K, U and D to up, down, page up and page down in various apps</name>
+    <identifier>com.microsoft.mouse.sculpt_comfort.updown_remaps</identifier>
+    <only>Marked2, Skim, Preview</only>
+    <autogen>__KeyToKey__ KeyCode::K, VK_CONTROL, KeyCode::CURSOR_UP, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::J, VK_CONTROL, KeyCode::CURSOR_DOWN, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::D, VK_CONTROL, KeyCode::PAGEDOWN, ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::U, VK_CONTROL, KeyCode::PAGEUP, ModifierFlag::NONE</autogen>
+  </item>
+  <item>
     <name>Map some of the cmd keys to ctrl keys in Safari, Firefox and Chrome</name>
     <identifier>com.microsoft.mouse.sculpt_comfort.browser_key_remaps</identifier>
     <only>Safari, Firefox, Chrome</only>
     <autogen>__KeyToKey__ KeyCode::W, VK_CONTROL, KeyCode::W, VK_COMMAND</autogen>
     <autogen>__KeyToKey__ KeyCode::T, VK_CONTROL, KeyCode::T, VK_COMMAND</autogen>
     <autogen>__KeyToKey__ KeyCode::R, VK_CONTROL, KeyCode::R, VK_COMMAND</autogen>
-    <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::F, VK_COMMAND</autogen>
     <autogen>__KeyToKey__ KeyCode::L, VK_CONTROL, KeyCode::L, VK_COMMAND</autogen>
     <autogen>__KeyToKey__ KeyCode::K, VK_CONTROL, KeyCode::CURSOR_UP, ModifierFlag::NONE</autogen>
     <autogen>__KeyToKey__ KeyCode::J, VK_CONTROL, KeyCode::CURSOR_DOWN, ModifierFlag::NONE</autogen>

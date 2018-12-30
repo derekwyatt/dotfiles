@@ -3,12 +3,6 @@
 -------------------------------------------------------------------
 hs.window.animationDuration = 0
 
-
--------------------------------------------------------------------
--- ControlEscape
--------------------------------------------------------------------
-hs.loadSpoon('ControlEscape'):start()
-
 -------------------------------------------------------------------
 -- Events
 --
@@ -16,9 +10,16 @@ hs.loadSpoon('ControlEscape'):start()
 -- actually done anything with it, so all it does "for real" is 
 -- return false
 -------------------------------------------------------------------
-hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(e)
-  return false
-end):start()
+theEventTap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(e)
+  if e:getKeyCode() == 105 then
+    print("Received keydown event: " .. e:getKeyCode())
+    hs.caffeinate.startScreensaver()
+    return true
+  else
+    return false
+  end
+end)
+theEventTap:start()
 
 -------------------------------------------------------------------
 -- ControlEscape
@@ -27,7 +28,8 @@ end):start()
 -- actually my CAPSLOCK key, after mapping it using the standard
 -- Mac keyboard preferences) to mimic the ESCAPE key.
 -------------------------------------------------------------------
-controlescape = hs.loadSpoon('ControlEscape'):start()
+theControlEscape = hs.loadSpoon('ControlEscape')
+theControlEscape:start()
 
 -------------------------------------------------------------------
 -- Vim Mode
@@ -77,42 +79,49 @@ units = {
 -- that I tend to use.
 layouts = {
   alternatecoding = {
-    { name = 'Firefox', unit = units.left70 },
-    { name = 'VimR',    unit = units.left30 },
-    { name = 'iTerm2',  unit = units.right70 }
+    -- { name = 'VimR',              unit = units.left30 },
+    { name = 'Firefox',           app = 'Firefox.app',           unit = units.left70 },
+    { name = 'MacVim',            app = 'MacVim.app',            unit = units.left30 },
+    { name = 'iTerm2',            app = 'iTerm.app',             unit = units.right70 }
   },
   alternatework = {
-    { name = 'Firefox',           unit = units.left70,  screen = 'Thunderbolt Display' },
-    { name = 'VimR',              unit = units.left30,  screen = 'Thunderbolt Display' },
-    { name = 'iTerm2',            unit = units.right70, screen = 'Thunderbolt Display' },
-    { name = 'Slack',             unit = units.bot87,   screen = 'Color LCD' },
-    { name = 'Microsoft Outlook', unit = units.maximum, screen = 'Color LCD' },
-    { name = 'WhatsApp',          unit = units.center,  screen = 'Color LCD' },
-    { name = 'Google Chrome',     unit = units.right70, screen = 'Color LCD' }
+    -- { name = 'VimR',              unit = units.left30,  screen = 'Thunderbolt Display' },
+    { name = 'Firefox',           app = 'Firefox.app',           unit = units.left70,  screen = 'Thunderbolt Display' },
+    { name = 'MacVim',            app = 'MacVim.app',            unit = units.left30,  screen = 'Thunderbolt Display' },
+    { name = 'iTerm2',            app = 'iTerm.app',             unit = units.right70, screen = 'Thunderbolt Display' },
+    { name = 'Slack',             app = 'Slack.app',             unit = units.bot87,   screen = 'Color LCD' },
+    { name = 'Microsoft Outlook', app = 'Microsoft Outlook.app', unit = units.maximum, screen = 'Color LCD' },
+    { name = 'WhatsApp',          app = 'WhatsApp.app',          unit = units.center,  screen = 'Color LCD' },
+    { name = 'Signal',            app = 'Signal.app',            unit = units.center,  screen = 'Color LCD' },
+    { name = 'Google Chrome',     app = 'Google Chrome.app',     unit = units.right70, screen = 'Color LCD' }
   },
   coding = {
-    { name = 'Firefox', unit = units.left70 },
-    { name = 'VimR',    unit = units.left70 },
-    { name = 'iTerm2',  unit = units.right30 }
+    -- { name = 'VimR',    unit = units.left70 },
+    { name = 'Firefox',           app = 'Firefox.app',           unit = units.left70 },
+    { name = 'MacVim',            app = 'MacVim.app',            unit = units.left70 },
+    { name = 'iTerm2',            app = 'iTerm2.app',            unit = units.right30 }
   },
   -- I'll use 'work' as my example. If I want to position the windows of
   -- all of these applications, then I simply specify 'layouts.work' and 
   -- then the layout engine will move all of the windows for these apps to
   -- the right monitor and in the right position on that monitor.
   work = {
-    { name = 'Firefox',           unit = units.left70,  screen = 'Thunderbolt Display' },
-    { name = 'VimR',              unit = units.left70,  screen = 'Thunderbolt Display' },
-    { name = 'iTerm2',            unit = units.right30, screen = 'Thunderbolt Display' },
-    { name = 'Slack',             unit = units.bot87,   screen = 'Color LCD' },
-    { name = 'Microsoft Outlook', unit = units.maximum, screen = 'Color LCD' },
-    { name = 'WhatsApp',          unit = units.center,  screen = 'Color LCD' },
-    { name = 'Google Chrome',     unit = units.right70, screen = 'Color LCD' }
+    -- { name = 'VimR',              unit = units.left70,  screen = 'Thunderbolt Display' },
+    { name = 'Firefox',           app = 'Firefox.app',            unit = units.left70,  screen = 'Thunderbolt Display' },
+    { name = 'MacVim',            app = 'MacVim.app',             unit = units.left70,  screen = 'Thunderbolt Display' },
+    { name = 'iTerm2',            app = 'iTerm.app',              unit = units.right30, screen = 'Thunderbolt Display' },
+    { name = 'Slack',             app = 'Slack.app',              unit = units.bot87,   screen = 'Color LCD' },
+    { name = 'Microsoft Outlook', app = 'Microsoft Outlook.app',  unit = units.maximum, screen = 'Color LCD' },
+    { name = 'WhatsApp',          app = 'WhatsApp.app',           unit = units.center,  screen = 'Color LCD' },
+    { name = 'Signal',            app = 'Signal.app',             unit = units.center,  screen = 'Color LCD' },
+    { name = 'Google Chrome',     app = 'Google Chrome.app',      unit = units.right70, screen = 'Color LCD' }
   },
   writing = {
-    { name = 'Firefox', unit = units.left70 },
-    { name = 'VimR',    unit = units.left70 },
-    { name = 'iTerm2',  unit = units.right30 },
-    { name = 'Skim',    unit = units.right70top80 }
+    -- { name = 'VimR',    unit = units.left70 },
+    { name = 'Firefox',           app = 'Firefox.app',            unit = units.left70 },
+    { name = 'MacVim',            app = 'MacVim.app',             unit = units.left70 },
+    { name = 'iTerm2',            app = 'iTerm.app',              unit = units.right30 },
+    { name = 'Skim',              app = 'Skim.app',               unit = units.right70top80 }
   }
 }
 
@@ -133,7 +142,12 @@ end
 function runLayout(layout)
   for i = 1,#layout do
     local t = layout[i]
-    local win = hs.application.get(t.name):mainWindow()
+    local theapp = hs.application.get(t.name)
+    if win == nil then
+      hs.application.open(t.app)
+      theapp = hs.application.get(t.name)
+    end
+    local win = theapp:mainWindow()
     local screen = nil
     if t.screen ~= nil then
       screen = hs.screen.find(t.screen)
@@ -212,10 +226,10 @@ hs.hotkey.bind(mash, '8', function() runLayout(layouts.writing) end)
 -------------------------------------------------------------------
 
 -- We need to store the reference to the alert window
-local appLauncherAlertWindow = nil
+appLauncherAlertWindow = nil
 
 -- This is the key mode handle
-local launchMode = hs.hotkey.modal.new({}, nil, '')
+launchMode = hs.hotkey.modal.new({}, nil, '')
 
 -- Leaves the launch mode, returning the keyboard to its normal
 -- state, and closes the alert window, if it's showing
@@ -256,12 +270,15 @@ launchMode:bind({ 'ctrl' }, 'space', function() leaveMode() end)
 -- Mapped keys
 launchMode:bind({}, 'c',  function() switchToApp('Google Chrome.app') end)
 launchMode:bind({}, 'f',  function() switchToApp('Firefox.app') end)
+launchMode:bind({}, 'i',  function() switchToApp('Signal.app') end)
 launchMode:bind({}, 'k',  function() switchToApp('Skim.app') end)
 launchMode:bind({}, 'l',  function() switchToApp('VLC.app') end)
 launchMode:bind({}, 'o',  function() switchToApp('Microsoft Outlook.app') end)
+launchMode:bind({}, 'r',  function() switchToApp('Safari') end)
 launchMode:bind({}, 's',  function() switchToApp('Slack.app') end)
 launchMode:bind({}, 't',  function() switchToApp('iTerm.app') end)
-launchMode:bind({}, 'v',  function() switchToApp('VimR.app') end)
+-- launchMode:bind({}, 'v',  function() switchToApp('VimR.app') end)
+launchMode:bind({}, 'v',  function() switchToApp('MacVim.app') end)
 launchMode:bind({}, 'w',  function() switchToApp('WhatsApp.app') end)
 launchMode:bind({}, '`',  function() hs.reload(); leaveMode() end)
 
@@ -274,7 +291,7 @@ launchMode:bind({}, 'e',  function() leaveMode() end)
 
 launchMode:bind({}, 'g',  function() leaveMode() end)
 launchMode:bind({}, 'h',  function() leaveMode() end)
-launchMode:bind({}, 'i',  function() leaveMode() end)
+
 launchMode:bind({}, 'j',  function() leaveMode() end)
 
 
@@ -283,7 +300,7 @@ launchMode:bind({}, 'n',  function() leaveMode() end)
 
 launchMode:bind({}, 'p',  function() leaveMode() end)
 launchMode:bind({}, 'q',  function() leaveMode() end)
-launchMode:bind({}, 'r',  function() leaveMode() end)
+
 
 
 launchMode:bind({}, 'u',  function() leaveMode() end)

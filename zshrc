@@ -24,7 +24,7 @@ fi
 
 export SS_DISPLAY_LIMIT=25
 export ZSH_CUSTOM=~/.dotfiles/zsh_custom
-plugins=(git regex-dirstack vim-interaction)
+plugins=(git regex-dirstack vim-interaction kubectl)
 source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 
@@ -39,8 +39,7 @@ unsetopt nomatch
 unsetopt correct_all
 
 if [ $(uname) = Darwin ]; then
-  export PATH=.:~/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/Cellar/coreutils/8.30/libexec/gnubin:~/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-  
+  export PATH=.:~/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 else
   alias open=gnome-open
   export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -83,7 +82,7 @@ function findWithSpec
     fi
   done
   if [[ -z "$dirs" ]]; then
-    dirs=.
+  dirs=.
   fi
   eval "find $dirs $nullprint $@ | egrep $egrepopts"
 }

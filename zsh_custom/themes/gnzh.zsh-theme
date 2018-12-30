@@ -55,6 +55,16 @@ function limitGitBranch
   fi
 }
 
+function getMinikubeContext
+{
+  local context=$(kubectl config current-context)
+  local colour="${PR_MAGENTA}"
+  if [[ $context == "minikube" && -z $(ps -ef | grep 'mini[k]ube') ]]; then
+    colour="${PR_RED}"
+  fi
+  echo "${colour}[$context]${PR_NO_COLOR} "
+}
+
 # make some aliases for the colours: (coud use normal escap.seq's too)
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
   eval PR_$color='%{$fg[${(L)color}]%}'
@@ -85,11 +95,12 @@ fi
 
 local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
+local mk_context='$(getMinikubeContext)'
 local git_branch='$(limitGitBranch)%{$PR_NO_COLOR%}'
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BOLD$PR_BLUE%}$(limitPath "$(print -P %~)" $COLUMNS "$(print -P @%m)" $(limitGitBranch))%{$PR_NO_COLOR%}'
 
-PROMPT="╭─${user_host} ${git_branch}${current_dir}
+PROMPT="╭─${mk_context}${git_branch}${current_dir}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
