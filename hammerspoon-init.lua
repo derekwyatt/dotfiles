@@ -211,6 +211,32 @@ hs.hotkey.bind(mash, '8', function() runLayout(layouts.writing) end)
 
 deepWorkTimer = nil
 
+function enableDoNotDisturb()
+  local dt = os.date("!%Y-%m-%d %H:%M:%S +000")
+  local output, status, typ, rc = hs.execute("defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb -boolean true")
+  if rc == 0 then
+    local output, status, typ, rc = hs.execute("defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturbDate -date '" .. dt .. "'")
+    if rc == 0 then
+      local output, status, typ, rc = hs.execute("killall NotificationCenter")
+      return output, status, typ, rc
+    else
+      return output, status, typ, rc
+    end
+  else
+    return output, status, typ, rc
+  end
+end
+
+function disableDoNotDisturb()
+  local output, status, typ, rc = hs.execute("defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb -boolean false")
+  if rc == 0 then
+    local output, status, typ, rc = hs.execute("killall NotificationCenter")
+    return output, status, typ, rc
+  else
+    return output, status, typ, rc
+  end
+end
+
 function displayAlertDialog(msg)
   local screen = hs.screen.mainScreen():currentMode()
   local width = screen["w"]
@@ -222,14 +248,14 @@ function resumeNotifications()
     deepWorkTimer:stop()
   end
   deepWorkTimer = nil
-  local output, status, typ, rc = hs.execute("/Users/dwyatt/bin/notifications on")
+  local output, status, typ, rc = disableDoNotDisturb()
   if rc ~= 0 then
     displayAlertDialog("Failed to start notifications: " .. output)
   end
 end
 
 function stopNotifcations(minutes)
-  local output, status, typ, rc = hs.execute("/Users/dwyatt/bin/notifications off")
+  local output, status, typ, rc = enableDoNotDisturb()
   if rc ~= 0 then
     displayAlertDialog("Failed to stop notifications: " .. output)
   else
