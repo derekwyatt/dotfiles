@@ -37,11 +37,11 @@ theControlEscape:start()
 -- Not sure I like this one... but I'm still trying it out.
 -------------------------------------------------------------------
 
-vim = hs.loadSpoon('VimMode')
-
-hs.hotkey.bind({'ctrl'}, ';', function()
-  vim:enter()
-end)
+-- vim = hs.loadSpoon('VimMode')
+-- 
+-- hs.hotkey.bind({'ctrl'}, ';', function()
+--   vim:enter()
+-- end)
 
 -------------------------------------------------------------------
 -- Window Layouts
@@ -202,6 +202,65 @@ hs.hotkey.bind(mash, '8', function() runLayout(layouts.writing) end)
 -- end
 
 -------------------------------------------------------------------
+-- Deep Work
+--
+-- Some functions that will disable notifications for a specified
+-- number of minutes, setting a timer that will enable them once
+-- it completes
+-------------------------------------------------------------------
+
+deepWorkTimer = nil
+
+function displayAlertDialog(msg)
+  local screen = hs.screen.mainScreen():currentMode()
+  local width = screen["w"]
+  hs.dialog.alert((width / 2) - 80, 25, function() end, msg)
+end
+
+function resumeNotifications()
+  if deepWorkTimer ~= nil and deepWorkTimer:running() then
+    deepWorkTimer:stop()
+  end
+  deepWorkTimer = nil
+  local output, status, typ, rc = hs.execute("/Users/dwyatt/bin/notifications on")
+  if rc ~= 0 then
+    displayAlertDialog("Failed to start notifications: " .. output)
+  end
+end
+
+function stopNotifcations(minutes)
+  local output, status, typ, rc = hs.execute("/Users/dwyatt/bin/notifications off")
+  if rc ~= 0 then
+    displayAlertDialog("Failed to stop notifications: " .. output)
+  else
+    deepWorkTimer = hs.timer.doAfter(minutes * 60, function() resumeNotifications(); displayAlertDialog("Deep Work has ended"); return 0 end)
+  end
+end
+
+function interrogateDeepWorkTimer()
+  if deepWorkTimer == nil then
+    displayAlertDialog("Deep Work timer isn't running")
+  else
+    local secs = math.floor(deepWorkTimer:nextTrigger() % 60)
+    local mins = math.floor(deepWorkTimer:nextTrigger() / 60)
+    displayAlertDialog(string.format("There is %02d:%02d left for deep work", mins, secs))
+  end
+end
+
+function deepwork()
+  resumeNotifications()
+  local code, mins = hs.dialog.textPrompt("How many minutes for deep work?", "", "90", "OK", "Cancel")
+  if code == "OK" then
+    local minNumber = tonumber(mins)
+    if minNumber == nil then
+      displayAlertDialog(string.format("'%s' is not a valid number of minutes", mins))
+    else
+      stopNotifcations(minNumber)
+    end
+  end
+end
+
+-------------------------------------------------------------------
 -- Launcher
 --
 -- This is the awesome. The other stuff is all cool, but this is the
@@ -269,36 +328,42 @@ launchMode:bind({ 'ctrl' }, 'space', function() leaveMode() end)
 
 -- Mapped keys
 launchMode:bind({}, 'c',  function() switchToApp('Google Chrome.app') end)
+launchMode:bind({}, 'd',  function() leaveMode(); deepwork() end)
+launchMode:bind({"shift"}, 'd',  function() leaveMode(); interrogateDeepWorkTimer() end)
 launchMode:bind({}, 'f',  function() switchToApp('Firefox.app') end)
+launchMode:bind({}, 'g',  function() switchToApp('OmniGraffle.app') end)
 launchMode:bind({}, 'i',  function() switchToApp('Signal.app') end)
 launchMode:bind({}, 'k',  function() switchToApp('Skim.app') end)
 launchMode:bind({}, 'l',  function() switchToApp('VLC.app') end)
+launchMode:bind({}, 'm',  function() switchToApp('Mail.app') end)
 launchMode:bind({}, 'o',  function() switchToApp('Microsoft Outlook.app') end)
 launchMode:bind({}, 'r',  function() switchToApp('Safari') end)
+launchMode:bind({}, 'p',  function() switchToApp('Microsoft Powerpoint.app') end)
 launchMode:bind({}, 's',  function() switchToApp('Slack.app') end)
 launchMode:bind({}, 't',  function() switchToApp('iTerm.app') end)
 -- launchMode:bind({}, 'v',  function() switchToApp('VimR.app') end)
 launchMode:bind({}, 'v',  function() switchToApp('MacVim.app') end)
 launchMode:bind({}, 'w',  function() switchToApp('WhatsApp.app') end)
+launchMode:bind({}, 'z',  function() switchToApp('zoom.us.app') end)
 launchMode:bind({}, '`',  function() hs.reload(); leaveMode() end)
 
 -- Unmapped keys
 launchMode:bind({}, 'a',  function() leaveMode() end)
 launchMode:bind({}, 'b',  function() leaveMode() end)
 
-launchMode:bind({}, 'd',  function() leaveMode() end)
+
 launchMode:bind({}, 'e',  function() leaveMode() end)
 
-launchMode:bind({}, 'g',  function() leaveMode() end)
+
 launchMode:bind({}, 'h',  function() leaveMode() end)
 
 launchMode:bind({}, 'j',  function() leaveMode() end)
 
 
-launchMode:bind({}, 'm',  function() leaveMode() end)
+
 launchMode:bind({}, 'n',  function() leaveMode() end)
 
-launchMode:bind({}, 'p',  function() leaveMode() end)
+
 launchMode:bind({}, 'q',  function() leaveMode() end)
 
 
@@ -308,7 +373,7 @@ launchMode:bind({}, 'u',  function() leaveMode() end)
 
 launchMode:bind({}, 'x',  function() leaveMode() end)
 launchMode:bind({}, 'y',  function() leaveMode() end)
-launchMode:bind({}, 'z',  function() leaveMode() end)
+
 launchMode:bind({}, '1',  function() leaveMode() end)
 launchMode:bind({}, '2',  function() leaveMode() end)
 launchMode:bind({}, '3',  function() leaveMode() end)
